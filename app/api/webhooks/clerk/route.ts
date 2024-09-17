@@ -1,12 +1,12 @@
 import { clerkClient } from "@clerk/nextjs";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
@@ -14,6 +14,8 @@ export async function POST(req: Request) {
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
     );
   }
+
+  // debugger;
 
   // Get the headers
   const headerPayload = headers();
@@ -115,4 +117,8 @@ export async function POST(req: Request) {
   console.log("Webhook body:", body);
 
   return new Response("", { status: 200 });
+}
+
+export async function GET() {
+  return Response.json({ greeging: "hi" });
 }

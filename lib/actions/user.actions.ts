@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { revalidatePath } from "next/cache";
 
@@ -25,10 +25,10 @@ export async function getUserById(userId: string) {
     await connectToDatabase();
 
     const user = await User.findOne({ clerkId: userId });
+    console.log("user is: ", user, "type: ", typeof user);
+    // if (!user) throw new Error("User not found ");
 
-    if (!user) throw new Error("User not found");
-
-    return JSON.parse(JSON.stringify(user));
+    return JSON.stringify(user);
   } catch (error) {
     handleError(error);
   }
@@ -44,7 +44,7 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     });
 
     if (!updatedUser) throw new Error("User update failed");
-    
+
     return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
     handleError(error);
