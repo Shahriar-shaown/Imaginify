@@ -19,6 +19,10 @@ const Sidebar = () => {
             alt="logo"
             height={180}
             width={150}
+            sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+            style={{ height: "100%", width: "100%" }}
           />
         </Link>
 
@@ -52,7 +56,7 @@ const Sidebar = () => {
               })}
             </ul>
             <ul className="sidebar-nav_elements">
-            {navLinks.slice(6).map((link) => {
+              {navLinks.slice(6).map((link) => {
                 const isActive = link.route === pathname;
 
                 return (
@@ -77,7 +81,6 @@ const Sidebar = () => {
                   </li>
                 );
               })}
-
 
               <li className="flex-center cursor-pointer gap-2 p-4">
                 <UserButton afterSignOutUrl="/" showName />

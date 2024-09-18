@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -10,8 +10,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 
 const MobileNav = () => {
-
-    const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <header className="header">
@@ -21,6 +20,10 @@ const MobileNav = () => {
           alt="logo"
           width={180}
           height={150}
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+          style={{ height: "100%", width: "100%" }}
         />
       </Link>
 
@@ -44,6 +47,10 @@ const MobileNav = () => {
                 alt="logo"
                 width={152}
                 height={23}
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
+                style={{ height: "100%", width: "100%" }}
               />
 
               <ul className="header-nav_elements">
@@ -53,9 +60,14 @@ const MobileNav = () => {
                   return (
                     <li
                       key={link.route}
-                      className={`${isActive && 'gradient-text'} p-18 flex whitespace-nowrap text-dark-700`}
+                      className={`${
+                        isActive && "gradient-text"
+                      } p-18 flex whitespace-nowrap text-dark-700`}
                     >
-                      <Link className="sidebar-link cursor-pointer" href={link.route}>
+                      <Link
+                        className="sidebar-link cursor-pointer"
+                        href={link.route}
+                      >
                         <Image
                           src={link.icon}
                           alt="logo"
@@ -72,10 +84,10 @@ const MobileNav = () => {
           </Sheet>
         </SignedIn>
         <SignedOut>
-            <Button asChild className="button bg-purple-gradient bg-cover">
-              <Link href="/sign-in">Login</Link>
-            </Button>
-          </SignedOut>
+          <Button asChild className="button bg-purple-gradient bg-cover">
+            <Link href="/sign-in">Login</Link>
+          </Button>
+        </SignedOut>
       </nav>
     </header>
   );
